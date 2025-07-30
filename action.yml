@@ -51,6 +51,17 @@ runs:
       run: |
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+    - name: Debug Git Status
+      shell: bash
+      run: |
+        echo "=== git status ==="
+        git status || echo "git status failed"
+        echo "=== ls -la ==="
+        ls -la
+        echo "=== ls -la .git ==="
+        ls -la .git || echo ".git not found"
+
     - name: Set up Node
       uses: actions/setup-node@v2
       with:
